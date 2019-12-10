@@ -3,8 +3,7 @@
   :url "https://github.com/hiredman/clj-http-lite/"
   :repositories {"sona" "http://oss.sonatype.org/content/repositories/snapshots"}
   :warn-on-reflection false
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [slingshot "0.12.1"]]
+  :dependencies [[org.clojure/clojure "1.6.0"]]
   :profiles {:dev {:dependencies [[ring/ring-jetty-adapter "1.3.2"]
                                   [ring/ring-devel "1.3.2"]]}
              :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
