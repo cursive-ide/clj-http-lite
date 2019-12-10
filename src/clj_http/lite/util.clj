@@ -4,7 +4,8 @@
   (:import (java.io ByteArrayInputStream ByteArrayOutputStream InputStream)
            (java.net URLEncoder URLDecoder)
            (java.util.zip InflaterInputStream DeflaterInputStream
-                          GZIPInputStream GZIPOutputStream)))
+                          GZIPInputStream GZIPOutputStream)
+           (java.util Base64)))
 
 (defn utf8-bytes
   "Returns the UTF-8 bytes corresponding to the given string."
@@ -20,17 +21,17 @@
   "Returns the form-url-decoded version of the given string, using either a
   specified encoding or UTF-8 by default."
   [encoded & [encoding]]
-  (URLDecoder/decode encoded (or encoding "UTF-8")))
+  (URLDecoder/decode ^String encoded ^String (or encoding "UTF-8")))
 
 (defn url-encode
   "Returns an UTF-8 URL encoded version of the given string."
   [unencoded]
-  (URLEncoder/encode unencoded "UTF-8"))
+  (URLEncoder/encode ^String unencoded "UTF-8"))
 
 (defn base64-encode
   "Encode an array of bytes into a base64 encoded string."
   [unencoded]
-  (javax.xml.bind.DatatypeConverter/printBase64Binary unencoded))
+  (.encodeToString (Base64/getEncoder) unencoded))
 
 (defn to-byte-array
   "Returns a byte array for the InputStream provided."
